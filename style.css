@@ -66,10 +66,10 @@ form input[type="submit"]{
     width: 100%;
     margin: 0 auto;
     cursor: pointer;
-    background-color: #14d4a5;
-    border: 1px solid #14d4a5;
+    background-color: #14b7d4;
+    border: 1px solid #62d8e0;
     color: #fff;
-    font-weight: 600;
+    font-weight: 850;
     transition: width 1s;
 }
 form input[type="submit"]:hover{
