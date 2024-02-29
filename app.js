@@ -28,6 +28,8 @@ function mostrarError(mensaje){
 function callAPI(ciudad, pais){
     const apiId = '5c6c5a029b957c4e60601ca6913348e2';
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${apiId}`;
+    console.log(url)
+
     fetch(url)
         .then(data => {
             return data.json();
@@ -51,15 +53,15 @@ function callAPI(ciudad, pais){
 function showWeather(data){
     const {name, main:{temp, temp_min, temp_max}, weather:[arr]} = data;
 
-    const degrees = kelvinToCentigrade(temp);
-    const min = kelvinToCentigrade(temp_min);
-    const max = kelvinToCentigrade(temp_max);
+    const grados = kelvin_centigrados(temp);
+    const min = kelvin_centigrados(temp_min);
+    const max = kelvin_centigrados(temp_max);
 
     const content = document.createElement('div');
     content.innerHTML = `
         <h5>Clima en ${name}</h5>
         <img src="https://openweathermap.org/img/wn/${arr.icon}@2x.png" alt="icon">
-        <h2>${degrees}°C</h2>
+        <h2>${grados}°C</h2>
         <p>Max: ${max}°C</p>
         <p>Min: ${min}°C</p>
     `;
@@ -74,7 +76,7 @@ function showWeather(data){
 }
 
 
-function kelvinToCentigrade(temp){
+function kelvin_centigrados(temp){
     return parseInt(temp - 273.15);
 }
 
