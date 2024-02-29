@@ -25,11 +25,9 @@ function mostrarError(mensaje){
 }
 
 
-function callAPI(city, country){
+function callAPI(ciudad, pais){
     const apiId = '5c6c5a029b957c4e60601ca6913348e2';
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiId}`;
-
-
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${apiId}`;
     fetch(url)
         .then(data => {
             return data.json();
@@ -41,9 +39,45 @@ function callAPI(city, country){
                 clearHTML();
                 showWeather(dataJSON);
             }
-            console.log(dataJSON);
+            //console.log(dataJSON);
         })
         .catch(error => {
             console.log(error);
         })
+
+
+}
+
+function showWeather(data){
+    const {name, main:{temp, temp_min, temp_max}, weather:[arr]} = data;
+
+    const degrees = kelvinToCentigrade(temp);
+    const min = kelvinToCentigrade(temp_min);
+    const max = kelvinToCentigrade(temp_max);
+
+    const content = document.createElement('div');
+    content.innerHTML = `
+        <h5>Clima en ${name}</h5>
+        <img src="https://openweathermap.org/img/wn/${arr.icon}@2x.png" alt="icon">
+        <h2>${degrees}°C</h2>
+        <p>Max: ${max}°C</p>
+        <p>Min: ${min}°C</p>
+    `;
+
+    resultado.appendChild(content);
+
+    /* console.log(name);
+    console.log(temp);
+    console.log(temp_max);
+    console.log(temp_min);
+    console.log(arr.icon); */
+}
+
+
+function kelvinToCentigrade(temp){
+    return parseInt(temp - 273.15);
+}
+
+function clearHTML(){
+    resultado.innerHTML = '';
 }
