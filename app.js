@@ -51,7 +51,7 @@ function callAPI(ciudad, pais){
 }
 
 function showWeather(data){
-    const {name, main:{temp, temp_min, temp_max}, weather:[arr]} = data;
+    const {name, main:{temp, temp_min, temp_max,humidity}, weather:[arr]} = data;
 
     const grados = kelvin_centigrados(temp);
     const min = kelvin_centigrados(temp_min);
@@ -64,6 +64,7 @@ function showWeather(data){
         <h2>${grados}°C</h2>
         <p>Max: ${max}°C</p>
         <p>Min: ${min}°C</p>
+        <p>humedad: ${humidity}%</p>
     `;
 
     resultado.appendChild(content);
