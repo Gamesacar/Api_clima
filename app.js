@@ -5,6 +5,8 @@ const resultado = document.querySelector('.result')
 const nameCity = document.querySelector('#city');
 const nameCountry = document.querySelector('#country');
 
+
+
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -69,11 +71,6 @@ function showWeather(data){
 
     resultado.appendChild(content);
 
-    /* console.log(name);
-    console.log(temp);
-    console.log(temp_max);
-    console.log(temp_min);
-    console.log(arr.icon); */
 }
 
 
@@ -83,4 +80,12 @@ function kelvin_centigrados(temp){
 
 function clearHTML(){
     resultado.innerHTML = '';
+}
+function showError(message){
+
+
+    Swal.fire({
+        title:"😭" ,
+        text: message,
+      });
 }
