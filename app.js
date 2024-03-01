@@ -18,7 +18,7 @@ formulario.addEventListener('submit', (e) => {
     console.log(nameCity.value);
     console.log(nameCountry.value);
 
-    callAPI(nameCity.value, nameCountry.value);
+    Consulta_api(nameCity.value, nameCountry.value);
 
 })
 
@@ -27,7 +27,7 @@ function mostrarError(mensaje){
 }
 
 
-function callAPI(ciudad, pais){
+function Consulta_api(ciudad, pais){
     const apiId = '5c6c5a029b957c4e60601ca6913348e2';
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${apiId}`;
     console.log(url)
